@@ -26,8 +26,7 @@
     "128": "icons/icon128.png"
   },
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
@@ -35,5 +34,10 @@
       "js": ["contentScript.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "securecredentials@lovable.dev"
+    }
+  }
 }

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SecureCredentials</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <div id="locked-view" class="view">
+      <div class="logo-container">
+        <img src="icons/icon128.png" alt="SecureCredentials" class="logo">
+        <h1>SecureCredentials</h1>
+      </div>
+      <div class="master-password-container">
+        <p>Enter your master password to access your credentials</p>
+        <input type="password" id="master-password" placeholder="Master password">
+        <div class="error-message" id="login-error"></div>
+        <button id="unlock-btn" class="primary-btn">Unlock</button>
+        <p class="setup-text" id="setup-message">First time? Set a master password to get started.</p>
+      </div>
+    </div>
+    
+    <div id="dashboard-view" class="view hidden">
+      <div class="header">
+        <div class="logo-container">
+          <img src="icons/icon48.png" alt="SecureCredentials" class="logo-small">
+          <h1>SecureCredentials</h1>
+        </div>
+        <button id="lock-btn" class="icon-btn">Lock</button>
+      </div>
+      
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search credentials...">
+      </div>
+      
+      <div class="credentials-list" id="credentials-list">
+        <!-- Credentials will be dynamically added here -->
+        <div class="empty-state" id="empty-state">
+          <p>No credentials saved yet</p>
+          <p class="hint">Credentials will appear here when you save them from websites</p>
+        </div>
+      </div>
+      
+      <div class="settings-bar">
+        <button id="settings-btn" class="text-btn">Settings</button>
+        <button id="export-btn" class="text-btn">Export</button>
+        <button id="import-btn" class="text-btn">Import</button>
+      </div>
+    </div>
+    
+    <div id="settings-view" class="view hidden">
+      <div class="header">
+        <button id="back-btn" class="icon-btn">Back</button>
+        <h2>Settings</h2>
+      </div>
+      
+      <div class="settings-list">
+        <div class="setting-item">
+          <div class="setting-label">
+            <h3>Change Master Password</h3>
+          </div>
+          <button id="change-password-btn" class="secondary-btn">Change</button>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">
+            <h3>Auto-Fill Credentials</h3>
+            <p>Automatically fill forms when you visit known websites</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="autofill-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">
+            <h3>Prompt to Save Credentials</h3>
+            <p>Ask to save new credentials when you log in to websites</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="autosave-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">
+            <h3>Allow Non-HTTPS Sites</h3>
+            <p>Enable saving credentials on non-secure websites (not recommended)</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="allow-http-toggle">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div id="detail-view" class="view hidden">
+      <div class="header">
+        <button id="back-to-list-btn" class="icon-btn">Back</button>
+        <h2 id="detail-domain">example.com</h2>
+        <button id="delete-credential-btn" class="icon-btn delete-btn">Delete</button>
+      </div>
+      
+      <div class="credential-details">
+        <div class="form-group">
+          <label for="detail-username">Username/Email</label>
+          <div class="input-with-action">
+            <input type="text" id="detail-username" readonly>
+            <button class="copy-btn" data-field="username">Copy</button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="detail-password">Password</label>
+          <div class="input-with-action">
+            <input type="password" id="detail-password" readonly>
+            <button class="toggle-visibility-btn" data-field="password">Show</button>
+            <button class="copy-btn" data-field="password">Copy</button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="detail-notes">Notes</label>
+          <textarea id="detail-notes" rows="3"></textarea>
+        </div>
+        
+        <button id="save-changes-btn" class="primary-btn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
